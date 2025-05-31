@@ -30,16 +30,28 @@ class AuthController extends Controller
         'password' => Hash::make($request>password),
     ]);
 
-    return response()->json(['token' => $medico->createtoken('token')->accesstoken], 201);
+    $token - $medico->createToken('token-medico')->accessToken;
+    return response()->json([
+        'token' => $token,
+        'medico' => $medico ], 201);
 }
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
         $credentials = $request->only('email', 'password');
 
-        if(Auth::guard('web')->attempt($credentials)){
+        if(Auth::guard('web')->attempt($credentials))
+        {
             $medico = Auth::guard('web')->user();
-            return response()->json(['token' => $medico->createToken('token')->accessToken]);
+            return response()->json(
+                [   'token' => $token,
+                    'medico' => $medico
+                ]);
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
