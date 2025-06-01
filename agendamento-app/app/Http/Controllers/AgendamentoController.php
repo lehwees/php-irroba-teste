@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 
 class AgendamentoController extends Controller
@@ -15,7 +17,7 @@ class AgendamentoController extends Controller
     public function index()
     {
         $medicoId = Auth::id();
-        return Agendamento::where('medico_id', $medicoId)>with('paciente')->get();
+        return Agendamento::where('medico_id', $medicoId)->with('paciente')->get();
     }
 
     /**
@@ -104,7 +106,7 @@ class AgendamentoController extends Controller
     /**
      * Listar agendamentos do médico autenticado
      */
-    public function meusAgendamento()
+    public function meusAgendamentos()
     {
         $medicoId = Auth::id();
         $agendamentos = Agendamento::where('medico_id', $medicoId)->with('paciente')->get();

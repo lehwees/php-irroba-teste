@@ -21,12 +21,23 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        $request>validate(
+        $medico = auth()->user();
+
+        if(!$medico)
+            {
+                return response()->json(['error' => 'Médico não encontrado'], 403);
+            }
+
+        $request->validate(
             [
-                'nome' => 'required|string',
-                'cpf' => 'required|string|unique:pacientes',
-                'nascimento' => 'required|date',
+                'nome' => 'required|string|max:255',
+                'cpf' => 'required|string|unique:pacientes,cpf',
+                'telefone' => 'nullable|string|max:255',
+                'nascimento' => 'nullable|date',
             ]);
+
+            $data = $request->all();
+            $data['medico_id'] = $medico->id;
 
             $paciente = Paciente::create($request->all());
 

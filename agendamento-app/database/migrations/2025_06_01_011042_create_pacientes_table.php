@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agendamentos', function (Blueprint $table) {
+        Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medico-id')->constrained('medicos')->onDelete("cascade");
-            $table->foreignId('paciente_id')->constrained('pacientes')->onDelete('cascade');
-            $table->date('data');
-            $table->time('hora');
+            $table->unsignedBigInteger('medico_id');
+            $table->foreign('medico_id')->references('id')->on('medicos')->onDelete('cascade');
+            $table->string('nome');
+            $table->string('email')->unique()->nullable();
+            $table->string('telefone')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agendamentos');
+        Schema::dropIfExists('pacientes');
     }
 };

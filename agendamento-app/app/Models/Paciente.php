@@ -14,7 +14,14 @@ class Paciente extends Model
         'nome',
         'cpf',
         'nascimento',
+        'telefone',
+        'medico_id'
     ];
+
+    public function medico()
+    {
+        return $this->belongsTo(Medico::class);
+    }
 
     public function agendamentos()
     {
