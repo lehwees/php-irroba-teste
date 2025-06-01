@@ -8,12 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Listar todos os pacientes logados
      */
     public function index()
     {
-        return Paciente::all();
+        $medico = auth()->user();
+        return Paciente::where('medico_id', $medico->id)->get();
     }
 
     /**
@@ -23,25 +29,23 @@ class PacienteController extends Controller
     {
         $medico = auth()->user();
 
-        if(!$medico)
-            {
-                return response()->json(['error' => 'Médico não encontrado'], 403);
-            }
+        if (!$medico) {
+            return response()->json(['mensagem' => 'Médico não encontrado'], 403);
+        }
 
-        $request->validate(
-            [
-                'nome' => 'required|string|max:255',
-                'cpf' => 'required|string|unique:pacientes,cpf',
-                'telefone' => 'nullable|string|max:255',
-                'nascimento' => 'nullable|date',
-            ]);
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string|unique:pacientes,cpf',
+            'telefone' => 'nullable|string|max:255',
+            'nascimento' => 'nullable|date',
+        ]);
 
-            $data = $request->all();
-            $data['medico_id'] = $medico->id;
+        $data = $request->all();
+        $data['medico_id'] = $medico->id;
 
-            $paciente = Paciente::create($request->all());
+        $paciente = Paciente::create($data);
 
-            return response()->json($paciente, 201);
+        return response()->json($paciente, 201);
     }
 
     /**

@@ -13,27 +13,21 @@ class AuthController extends Controller
 {
 
     public function register(Request $request)
-{
-    $validator = Validator::make($request->all(),
-    [
-        'nome' => 'required',
-        'email' => 'required|email|unique:medicos',
-        'password' => 'required|min:6',
+    {
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|unique:medicos',
+            'password' => 'required|min:6',
+        ]);
 
-    ]);
+        $medico = Medico::create([
+            'nome' => $request->nome,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json(['erro' => $validator->errors()], 422);
+        return response()->json(['message' => 'Médico registrado com sucesso'], 201);
     }
-
-    $medico = Medico::create([
-        'nome' => $request->nome,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    return response()->json($medico, 201);
-}
 
 public function login(Request $request)
     {

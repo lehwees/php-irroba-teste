@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Rotas login e cadastro médicos
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/medicos', [App\Http\Controllers\AuthController::class, 'register']);
 
 //Rotas de autenticação com Passport     
 Route::middleware('auth:api')->group(function() {

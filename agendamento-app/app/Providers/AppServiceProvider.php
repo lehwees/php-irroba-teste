@@ -2,19 +2,23 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Passport\Passport;
 
 class AppServiceProvider extends ServiceProvider
 {
-    
-    
     /**
-     * Bootstrap any application services.
+     * Registrar serviços da aplicação
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Inicializar qualquer serviço após o registro
      */
     public function boot(): void
-    {   
-        
+    {
+        //
     }
 }
