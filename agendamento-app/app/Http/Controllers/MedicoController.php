@@ -67,11 +67,10 @@ class MedicoController extends Controller
         return view('medico.dashboard', compact('medico', 'pacientes', 'agendamentos'));
     }
 
-    public function showCadastroForm()
+    public function formCadastro()
     {
-        return view('medicos.cadastro');
+        return view('medico.cadastro');
     }
-
     /**
     * Cadastro tela medico 
     */

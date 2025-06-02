@@ -24,6 +24,8 @@ Route::resource('medicos', MedicoController::class);
 Route::get('/medicos/cadastro', [MedicoController::class, 'create'])->name('medicos.cadastro');
 Route::get('/medicos/cadastro', [MedicoController::class, 'create'])->name('medicos.create');
 Route::post('/medicos', [MedicoController::class, 'store'])->name('medicos.store');
+Route::get('/cadastro-medico', [MedicoController::class, 'formCadastro'])->name('medicos.cadastro');
+
 
 // Paciente: Cadastro e gerenciamento
 Route::get('/pacientes/cadastro', [PacienteController::class, 'create'])->name('pacientes.cadastro'); // mostrar formulário
@@ -31,7 +33,6 @@ Route::post('/pacientes/cadastro', [PacienteController::class, 'store'])->name('
 
 // Editar paciente
 Route::get('/pacientes/cadastro', [PacienteController::class, 'create'])->name('pacientes.create');
-Route::post('/pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
 
 // Agendamento
 Route::get('/agendamento', [AgendamentoController::class, 'showAgendamentoForm'])->name('agendamento.form');

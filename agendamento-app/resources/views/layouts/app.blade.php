@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>@yield('title', 'Sistema Médico')</title>
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}"></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento Médico</title>
+
+    {{-- Estilo personalizado --}}
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+</head>
 <body>
-  <header>
-    <nav>
-    <a href="{{ route('home') }}">Home</a>
-    <a href="{{ route('medicos.login') }}">Login Médico</a>
-    <a href="{{ route('medicos.cadastro') }}">Cadastro Médico</a> |
-    <a href="{{ route('pacientes.cadastro') }}">Cadastro Paciente</a> |
-    <a href="{{ route('agendamento.form') }}">Agendamento</a> |
-
-    @isset($paciente)
-        <a href="{{ route('paciente.editar', $paciente->id) }}">Editar Paciente</a>
-    @endisset
-
-    @isset($agendamento)
-        <a href="{{ route('agendamento.editar', $agendamento->id) }}">Editar Agendamento</a>
-    @endisset
+    <nav class="navbar">
+        <div class="container">
+            <a class="brand" href="{{ url('/') }}">Agendamento</a>
+            <ul class="nav-links">
+                <li><a href="{{ route('medicos.login') }}">Login Médico</a></li>
+                <li><a href="{{ route('medicos.cadastro') }}">Cadastro Médico</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    @yield('content')
-  </main>
+    <main class="container">
+        @yield('content')
+    </main>
 </body>
 </html>

@@ -1,131 +1,99 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Corpo da página */
-  body {
-    background: #f9f9f9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f8fc;
     color: #333;
     line-height: 1.6;
-    padding: 20px;
-  }
-  
-  /* Header e navegação */
-  header {
-    background: #005f73;
-    padding: 15px 20px;
-    margin-bottom: 30px;
-    border-radius: 5px;
-  }
-  
-  header nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 15px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-  }
-  
-  header nav a:hover {
-    color: #94d2bd;
-  }
-  
-  /* Conteúdo principal */
-  main {
-    max-width: 600px;
+}
+
+.container {
+    max-width: 700px;
     margin: 0 auto;
-    background: #fff;
-    padding: 25px 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  /* Títulos */
-  h1 {
-    margin-bottom: 20px;
-    color: #0a9396;
-  }
-  
-  /* Formulários */
-  form label {
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007bff;
+    padding: 1rem;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Formulários */
+form label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: 600;
-  }
-  
-  form input[type="text"],
-  form input[type="email"],
-  form input[type="password"],
-  form input[type="date"],
-  form input[type="time"],
-  form input[type="tel"] {
+}
+
+form input,
+form select,
+form textarea {
     width: 100%;
     padding: 10px;
+    border-radius: 8px;
     margin-bottom: 15px;
-    border: 1.8px solid #94d2bd;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-  }
-  
-  form input[type="text"]:focus,
-  form input[type="email"]:focus,
-  form input[type="password"]:focus,
-  form input[type="date"]:focus,
-  form input[type="time"]:focus,
-  form input[type="tel"]:focus {
-    border-color: #005f73;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #007bff;
     outline: none;
-  }
-  
-  /* Botões */
-  button {
-    background: #0a9396;
-    color: #fff;
-    border: none;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
     padding: 12px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background: #005f73;
-  }
-  
-  /* Seções da tela de edição */
-  section {
-    margin-bottom: 30px;
-  }
-  
-  section h2 {
-    color: #005f73;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #94d2bd;
-    padding-bottom: 6px;
-  }
-  
-  /* Mensagens e parágrafos */
-  p {
-    margin-top: 10px;
-    font-style: italic;
-    color: #666;
-  }
-  
-  /* Responsividade simples */
-  @media (max-width: 640px) {
-    main {
-      padding: 15px 20px;
-      width: 90%;
-    }
-    
-    header nav a {
-      display: block;
-      margin-bottom: 8px;
-    }
-  }
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #444;
+    text-align: center;
+}

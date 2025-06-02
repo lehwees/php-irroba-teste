@@ -27,18 +27,18 @@ class PacienteController extends Controller
     public function store(Request $request)
     { 
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'cpf' => 'required|string|unique:pacientes,cpf',
-            'telefone' => 'nullable|string|max:255',
-            'nascimento' => 'nullable|date',
-        ]);
-    
-        $data = $request->all();
-        $data['medico_id'] = auth()->id();
-    
-        Paciente::create($data);
-    
-        return redirect()->route('pacientes.create')->with('success', 'Paciente cadastrado com sucesso!');
+        'nome' => 'required|string|max:255',
+        'cpf' => 'required|string|unique:pacientes,cpf',
+        'telefone' => 'nullable|string|max:255',
+        'nascimento' => 'nullable|date',
+    ]);
+
+    $data = $request->all();
+    $data['medico_id'] = auth()->id();
+
+    Paciente::create($data);
+
+    return redirect()->route('pacientes.create')->with('success', 'Paciente cadastrado com sucesso!');
     }
 
     /**
