@@ -6,6 +6,7 @@
     font-family: Arial, sans-serif;
   }
   
+  /* Corpo da página */
   body {
     background: #f9f9f9;
     color: #333;
@@ -13,6 +14,7 @@
     padding: 20px;
   }
   
+  /* Header e navegação */
   header {
     background: #005f73;
     padding: 15px 20px;
@@ -80,7 +82,7 @@
     outline: none;
   }
   
-
+  /* Botões */
   button {
     background: #0a9396;
     color: #fff;
