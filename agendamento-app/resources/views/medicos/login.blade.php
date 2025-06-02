@@ -5,7 +5,7 @@
 @section('content')
   <h1>Login Médico</h1>
 
-  <form method="POST" action="{{ route('medicos.login') }}">
+  <form method="POST" action="{{ route('medicos.login.submit') }}">
     @csrf
     <label for="email">E-mail:</label>
     <input type="email" id="email" name="email" required />

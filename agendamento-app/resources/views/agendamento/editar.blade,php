@@ -1,0 +1,45 @@
+@extends('layouts.app')
+
+@section('title', 'Editar Paciente e Agendamento')
+
+@section('content')
+  <h1>Editar Dados</h1>
+
+  <section>
+    <h2>Editar Paciente</h2>
+    <form method="POST" action="{{ route('pacientes.editar') }}">
+      @csrf
+      @method('PUT')
+
+      <label for="pacienteId">ID do Paciente:</label>
+      <input type="text" id="pacienteId" name="pacienteId" required />
+
+      <label for="nomePaciente">Nome:</label>
+      <input type="text" id="nomePaciente" name="nomePaciente" required />
+
+      <label for="cpfPaciente">CPF:</label>
+      <input type="text" id="cpfPaciente" name="cpfPaciente" required />
+
+      <button type="submit">Salvar Paciente</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Editar Agendamento</h2>
+    <form method="POST" action="{{ route('agendamento.editar') }}">
+      @csrf
+      @method('PUT')
+
+      <label for="agendamentoId">ID do Agendamento:</label>
+      <input type="text" id="agendamentoId" name="agendamentoId" required />
+
+      <label for="dataAgendamento">Data:</label>
+      <input type="date" id="dataAgendamento" name="dataAgendamento" required />
+
+      <label for="horaAgendamento">Hora:</label>
+      <input type="time" id="horaAgendamento" name="horaAgendamento" required />
+
+      <button type="submit">Salvar Agendamento</button>
+    </form>
+  </section>
+@endsection

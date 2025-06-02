@@ -7,20 +7,16 @@ use App\Models\Medico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class PacienteController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
     /**
      * Listar todos os pacientes logados
      */
     public function index()
     {
-        $medico = auth::user();
-        $Paciente = Paciente::where('medico_id', $medicoId)->get();
+        $medicoId = Auth::id();
+        $pacientes = Paciente::where('medico_id', $medicoId)->get();
 
         return response()->json($pacientes);
     }
@@ -29,26 +25,20 @@ class PacienteController extends Controller
      * Cadastrar novo paciente
      */
     public function store(Request $request)
-    {
-        $medicoId = Auth::id();
-        
-        $validateDAta = $request->validate([
+    { 
+        $request->validate([
             'nome' => 'required|string|max:255',
             'cpf' => 'required|string|unique:pacientes,cpf',
             'telefone' => 'nullable|string|max:255',
             'nascimento' => 'nullable|date',
         ]);
-
-        $paciente = Paciente::create
-        ([
-            'nome' => $request->nome,
-            'cpf' => $request->cpf,
-            'telefone' => $request->telefon,
-            'nascimento' => $request->nascimento,
-            'medico_id' => Auth::id()
-        ]);
-
-        return response()->json($paciente, 201);
+    
+        $data = $request->all();
+        $data['medico_id'] = auth()->id();
+    
+        Paciente::create($data);
+    
+        return redirect()->route('pacientes.create')->with('success', 'Paciente cadastrado com sucesso!');
     }
 
     /**
@@ -167,4 +157,48 @@ class PacienteController extends Controller
 
         return response()->json(['message' => 'Paciente deletado com sucesso']);
     }
+
+    public function cadastrar(Request $request)
+    {
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14|unique:pacientes,cpf',
+            'telefone' => 'required|string|max:20',
+        ]);
+
+        $paciente = new Paciente();
+        $paciente->nome = $request->nome;
+        $paciente->cpf = $request->cpf;
+        $paciente->telefone = $request->telefone;
+        $paciente->medico_id = Auth::id(); // importante vincular o paciente ao médico logado
+        $paciente->save();
+
+        return redirect()->route('cadastro-paciente')->with('success', 'Paciente cadastrado com sucesso!');
+    }
+
+    public function create()
+    {
+        return view('pacientes.cadastro');
+    }
+
+    public function showCadastroForm()
+    {
+        return view('paciente.cadastro');
+    }
+
+    public function salvar(Request $request)
+    {
+        // validação e salvamento
+        $request->validate([
+            'nome' => 'required',
+            'cpf' => 'required',
+            'telefone' => 'required',
+        ]);
+
+        // Exemplo simples para salvar:
+        Paciente::create($request->all());
+
+        return redirect()->route('pacientes.cadastro')->with('success', 'Paciente cadastrado com sucesso!');
+    }
+
 }

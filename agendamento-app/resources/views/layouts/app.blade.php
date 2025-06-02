@@ -9,9 +9,9 @@
   <header>
     <nav>
     <a href="{{ route('home') }}">Home</a>
-    <a href="{{ route('login-medico') }}">Login Médico</a>
+    <a href="{{ route('medicos.login') }}">Login Médico</a>
     <a href="{{ route('medicos.cadastro') }}">Cadastro Médico</a> |
-    <a href="{{ route('paciente.cadastro') }}">Cadastro Paciente</a> |
+    <a href="{{ route('pacientes.cadastro') }}">Cadastro Paciente</a> |
     <a href="{{ route('agendamento.form') }}">Agendamento</a> |
 
     @isset($paciente)

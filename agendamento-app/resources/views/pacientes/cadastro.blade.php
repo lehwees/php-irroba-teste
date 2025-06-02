@@ -5,7 +5,7 @@
 @section('content')
   <h1>Cadastro Paciente</h1>
 
-  <form method="POST" action="{{ route('pacientes.cadastro') }}">
+  <form method="POST" action="{{ route('pacientes.store') }}">
     @csrf
 
     <label for="nome">Nome:</label>
@@ -19,4 +19,20 @@
 
     <button type="submit">Cadastrar</button>
   </form>
+
+  @if(session('success'))
+      <div style="color:green; margin-bottom: 10px;">
+          {{ session('success') }}
+      </div>
+  @endif
+
+  @if($errors->any())
+      <div style="color:red; margin-bottom: 10px;">
+          <ul>
+              @foreach($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
 @endsection

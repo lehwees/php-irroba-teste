@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Paciente;
+use App\Models\Agendamento;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -33,8 +34,8 @@ class Medico extends Authenticatable
         return $this->hasMany(Paciente::class);
     }
 
-    public function agendamentos()
+    public function agendamentos(): HasMany
     {
-        return $this->hasMany(agendamento::class);
+        return $this->hasMany(Agendamento::class);
     }
 }
